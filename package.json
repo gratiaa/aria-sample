@@ -1,0 +1,30 @@
+{
+  "name": "aria-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gratiaa/aria-sample.git"
+  },
+  "keywords": [
+    "ARIA",
+    "role"
+  ],
+  "author": "Young Bae",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gratiaa/aria-sample/issues"
+  },
+  "homepage": "https://github.com/gratiaa/aria-sample#readme",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-webserver": "^0.9.1"
+  }
+}
