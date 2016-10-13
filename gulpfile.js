@@ -3,21 +3,10 @@
  */
 
 var gulp = require('gulp');
-var webserver = require('gulp-webserver');
 var sass = require('gulp-sass');
-var livereload = require('gulp-livereload');
+var browsersync = require('browser-sync');
 
 var dist = 'dist' + '/';
-
-gulp.task('webserver', function() {
-   gulp.src('./')
-       .pipe(webserver({
-           livereload: true,
-           directoryListing: true,
-           open: true,
-           fallback: 'index.html'
-       }));
-});
 
 gulp.task('compile-sass', function () {
     return gulp.src('./src/sass/**/*.scss')
@@ -26,11 +15,27 @@ gulp.task('compile-sass', function () {
 });
 
 gulp.task('watch', function () {
-    livereload.listen();
     gulp.watch('./src/js/**/*.js');
     gulp.watch('./src/sass/**/*.scss', ['compile-sass']);
     gulp.watch('./src/**.*.html');
-    gulp.watch(dist + '/**').on('change', livereload.changed);
 });
 
-gulp.task('default', ['webserver', 'compile-sass', 'watch']);
+gulp.task('server', ['watch'], function() {
+    browsersync.init({
+        server: {
+            baseDir: './',
+            directory: true
+        },
+        port: 8000,
+        ui: {
+            port: 8001,
+            weinre: {
+                port: 9090
+            }
+        },
+        open: false
+    });
+
+    gulp.watch('src/html/**/*.html').on('change', browsersync.reload);
+    gulp.watch(dist + '/**').on('change', browsersync.reload);
+});
